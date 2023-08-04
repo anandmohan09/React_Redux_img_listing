@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -12,6 +12,7 @@ import {SiJpeg} from 'react-icons/si';
 
 function Example() {
   const [show, setShow] = useState(false);
+  const[heading,setHeading]=useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -45,12 +46,17 @@ function Example() {
 
   //   console.log(list);
 
+  useEffect(()=>{
+    console.log("inputData", inputData)
+  }, [inputData])
+
   return (
     <>
       <Button
-        variant="primary"
+        variant=""
         onClick={handleShow}
-        style={{ width: "60px", height: "40px", marginTop: "10px" }}
+        style={{ width: "93px", height: " 42px" ,background:' #58b314',
+        color: 'white',borderRadius:'25px',fontSize:'18px'}}
       >
         Add
       </Button>
@@ -82,8 +88,8 @@ function Example() {
           <div
             className="file-card"
             style={{
-              backgroundColor: "#edf2f7",
-              border: "3px dashed #cbd5e0",
+            //   backgroundColor: "#edf2f7",
+            //   border: "3px dashed #cbd5e0",
               padding: "1em",
               minWidth: "380px",
               minHeight: "230px",
@@ -105,8 +111,8 @@ function Example() {
                 type="file"
                 style={{
                   position: "relative",
-                  maxWidth: "200px",
-                  height: "46px",
+                  width: "461px",
+                  height: "172px",
                   zIndex: "2",
                   cursor: "pointer",
                   opacity: "0",
@@ -123,8 +129,8 @@ function Example() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  color: "#fff",
-                  backgroundColor: "#f55e30",
+                  color: "maroon",
+                  backgroundColor: "##7d179366",
                   fontSize: "1.1rem",
                   cursor: "pointer",
                   borderRadius: "4px",
@@ -149,22 +155,23 @@ function Example() {
                     fontSize: "0.8em",
                   }}
                 />
-                upload
+               Upload
               </button>
             </div>
-            <p>Support files</p>
-            <p>JPEG,PNG</p>
+            {/* <p>Support files</p>
+            <p>JPEG,PNG</p> */}
           </div>
         </Modal.Body>
         <table style={{ textAlign: "center" }}>
           <thead>
+            {inputData.length>0 ? 
             <tr>
               <th>Serial no</th>
               <th>Image Name</th>
               <th>Size</th>
               <th>Type</th>
               <th>Actions</th>
-            </tr>
+            </tr>: heading}
           </thead>
           {inputData.length > 0
             ? inputData.map((ele, index) => {
@@ -174,11 +181,11 @@ function Example() {
                       <tr>
                         <td>{index + 1}</td>
                         <td>
-                          <BiSolidFilePng style={{color:'red'}} />
-                          {ele?.file.name}
+                          <BiSolidFilePng style={{color:'red',fontSize:'30px'}} />
+                          {ele?.file.name.slice(0,10)}
                           {/* <Example1/> */}
                         </td>
-                        <td>{ele?.file.size}kb</td>
+                        <td>{Number(ele?.file.size/1000000).toFixed(2)}mb</td>
                         <td>{ele?.file.type}</td>
                         <td
                           onClick={() => deleteImage(index)}
@@ -203,11 +210,11 @@ function Example() {
                           <tr>
                             <td>{index + 1}</td>
                             <td>
-                              <SiJpeg style={{color:'red'}} />
-                              {ele?.file.name}
+                              <SiJpeg style={{color:'red',fontSize:'30px'}} />
+                              {ele?.file.name.slice(0,10)}
                               {/* <Example1/> */}
                             </td>
-                            <td>{ele?.file.size}kb</td>
+                            <td>{Number(ele?.file.size/1000000).toFixed(2)}mb</td>
                             <td>{ele?.file.type}</td>
                             <td
                               onClick={() => deleteImage(index)}
@@ -241,6 +248,7 @@ function Example() {
             onClick={() => {
               dispatch(addTodo(inputData));
               handleClose();
+              setInputData([])
             }}
           >
             Add

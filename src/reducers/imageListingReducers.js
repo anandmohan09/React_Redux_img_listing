@@ -6,21 +6,20 @@ const imageListingReducers=(state=initialData,action)=>{
   switch(action.type){
     case "ADD_TODO":
 
-    const{id, data}=action.payload;
+    // const{id, data}=action.payload;
     return {
         ...state,
         list:[
             ...state.list,
-            {
-              id:id,
-              data:data
-            }
+          ...action.payload
         ]
     }
     case "DELETE_TODO":
     //  console.log('deleteaction',action);
-   const newList= state.list.filter((ele)=>  ele.id !== action.id)
-   
+//    const newList= state.list.filter((x)=>  x.id !== action.id)
+const newList=state.list.filter((index)=>index !==action.id)
+// const newList=state.splice(id,1);
+   console.log("--newList--", newList)
     return {
         ...state,
         list: newList

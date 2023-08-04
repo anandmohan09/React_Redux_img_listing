@@ -2,10 +2,11 @@ export const addTodo=(data)=>{
     console.log('datas',data);
     return {
         type:'ADD_TODO',
-        payload:{
-            id:new Date().getTime().toString(),
-            data:data
-        }
+        // payload:{
+        //     id:new Date().getTime().toString(),
+        //     data:data
+        // }
+        payload:data
     }
 }
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Examples({x}) {
+function Examples({ele}) {
   const values = [true];
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
@@ -25,12 +25,18 @@ function Examples({x}) {
           {typeof v === 'string' && `below ${v.split('-')[0]}`}
         </Button>
       ))}
-      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)
+  
+    }
+    // style={{width:'800px',zIndex:'1'}}
+      
+      >
         <Modal.Header closeButton>
           <Modal.Title>View Image</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-        <img src={x.imagePreview.name} alt='imageCicked' style={{width:'100%',height:'580px'}}></img>
+        <Modal.Body >
+        <img src={ele.imagePreview.name} alt='imageCicked' style={{width:'100%',height:'86vh',padding:"66px 55px",
+    }}></img>
      
                   
             
