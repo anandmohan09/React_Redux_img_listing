@@ -22,7 +22,9 @@ function Example1({x,id,ele}) {
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title><h3>Delete Confirmation</h3></Modal.Title>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Small Modal
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body><h5>Are U Sure You want to Delete?</h5></Modal.Body>
         <Modal.Footer>
