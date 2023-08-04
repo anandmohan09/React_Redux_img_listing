@@ -39,6 +39,7 @@ function Example1({x,id,ele}) {
         
           >
             Yes
+            
           </Button>
         </Modal.Footer>
       </Modal>
